@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="google-site-verification" content="m0CeYIRXOSJIVSmFbuM28Qt-DjwBRPEtBE0-x_CVzbM" />
+  <meta name="description" content="ccc-amputee"/>
+  <link rel="stylesheet" href="../style.css">
+  <title>ccc-amputee website</title>
+</head>
+<body>
+<div id="header"></div>
+  <script>
+    fetch('../header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+  </script>
+<div id="statement">
+  <div id="text-box">
+    <div class="tag-searcher">
+      <h3>搜尋標籤</h3>
+      <br>
+      <input type="text" id="searchInput"
+             placeholder="輸入關鍵字搜尋標籤，例如：函數、最小生成樹"
+             onkeyup="searchTags()">
+
+      <div id="tagResults" class="tag-results"></div>
+    </div>
+    <script src="../tag_searcher.js"></script>
+    <br>
+
+    <div id="ListAllTag" class="tag-results"></div>
+    <script src="../list_tag.js"></script>
+
+  </div>
+  <br>
+  <div id="dashboard"></div>
+  <script>
+    fetch('../dashboard.html').then(r => r.text()).then(d => document.getElementById('dashboard').innerHTML = d);
+  </script>
+</div>
+
+<div id="footer"></div>
+<script>
+  fetch('../footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+</script>
+</body>
+
+</html>

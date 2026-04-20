@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="m0CeYIRXOSJIVSmFbuM28Qt-DjwBRPEtBE0-x_CVzbM" />
+    <meta name="description" content="about | ccc-amputee"/>
+    <link rel="stylesheet" href="../style.css">
+    <title>about -- ccc-amputee website</title>
+</head>
+<body>
+<div id="header"></div>
+<script>
+    fetch('../header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+</script>
+<div id="statement">
+    <div id="text-box">
+        <br>
+        <div class="title">關於</div>
+        <div class="date"><a>2026/04/20 FRI</a></div>
+        <div class="text">
+            tsaihaojiang.github.io是tsaihaojiang創立的一個娛樂和學習相結合的網站。
+            此網站啟發於tsaihaojiang的同學CCC，僅供娛樂。繼4月10日起，此網站支持評論功能。
+        </div>
+        <div class="text">
+            本網站於2026年04月20日正式活躍於網絡(其實也就是個唐唐的網站)，由打造評論區到設置模組，本人期間遇到很多我這種菜鳥會
+            遇到的問題，萬幸的是最後也一一解決了。
+        </div>
+        <div class="text">
+            本網站將會帶來一些娛樂的同時，仍會時不時(總結：很少)應用一些無聊的數學或其他科目的知識。也希望大家多多投稿，
+            介紹一些有趣的數學或科學問題。
+        </div>
+        <div class="text">
+            本人現也是菜雞(Professional)一枚，希望各位遊客多多關照！
+        </div>
+
+        <br>
+        <div style="margin-top: 40px;">
+            <script src="https://giscus.app/client.js"
+                    data-repo="tsaihaojiang/blog-comments"
+                    data-repo-id="R_kgDOSHqYaA"
+                    data-category="about/index.html"
+                    data-category-id="002"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="1"
+                    data-emit-metadata="0"
+                    data-input-position="top"
+                    data-theme="light"
+                    data-lang="zh-TW"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </div>
+    </div>
+    <div id="dashboard"></div>
+    <script>
+        fetch('../dashboard.html').then(r => r.text()).then(d => document.getElementById('dashboard').innerHTML = d);
+    </script>
+</div>
+<div id="footer"></div>
+<script>
+    fetch('../footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+</script>
+</body>
+
+</html>
