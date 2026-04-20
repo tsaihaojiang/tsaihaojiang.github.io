@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="google-site-verification" content="m0CeYIRXOSJIVSmFbuM28Qt-DjwBRPEtBE0-x_CVzbM" />
+  <meta name="description" content="tsaihaojiang blog"/>
+  <link rel="stylesheet" href="../style.css">
+  <title>ccc-amputee website</title>
+</head>
+<body>
+<div id="header"></div>
+<script>
+  fetch('../header.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('header').innerHTML = data);
+</script>
+<div id="statement">
+  <div id="text-box">
+    <div class="title">有任何意見請在這裏留言!!!</div>
+    <div class="date"><a>2026/04/20 MON</a></div>
+    <br>
+    <script src="https://giscus.app/client.js"
+            data-repo="tsaihaojiang/blog-comments"
+            data-repo-id="R_kgDOSHqYaA"
+            data-category="suggestion/index.html"
+            data-category-id="004"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="light"
+            data-lang="zh-TW"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+  <br>
+  <div id="dashboard"></div>
+  <script>
+    fetch('../dashboard.html')
+            .then(response => response.text())
+            .then(data => {
+              const dashboard = document.getElementById('dashboard');
+              dashboard.innerHTML = data;
+              window.renderContributorRanking?.(dashboard);
+            });
+  </script>
+</div>
+
+<div id="footer"></div>
+<script>
+  fetch('../footer.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('footer').innerHTML = data);
+</script>
+</body>
+
+</html>
