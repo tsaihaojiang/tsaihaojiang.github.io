@@ -17,6 +17,7 @@
     <!--math library import start -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <!--math library import end -->
 </head>
 <body>
@@ -31,69 +32,99 @@
         <div class="title">一起錯過是怎樣的體驗----錯排</div>
         <div class="date"><a>2026/04/21 TUE</a></div>
         <div class="article-tags">
-            <span class="article-tag"><a>#遞推</a></span>
-            <span class="article-tag"><a>#組合數學</a></span>
-            <span class="article-tag"><a>#錯排</a></span>
-            <span class="article-tag"><a>#計數問題</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/遞推.html">#遞推</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/組合數學.html">#組合數學</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/錯排.html">#錯排</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/計數問題.html">#計數問題</a></span>
         </div>
         <div id="content">
             <h2>目錄</h2>
             <ol>
                 <li><a href="#abstract">簡介</a></li>
-                <li><a href="#desmos">證明</a></li>
-                <li><a href="#geogebra">一起錯過的概率</a></li>
+                <li><a href="#ans">遞推式和證明</a></li>
+                <li><a href="#probability">一起錯過的概率</a></li>
             </ol>
         </div>
         <div class="text" id="abstract">
             <h2>簡介</h2>
-            <br>
-            是這樣的，現在有\[n\]個人，他們每人要寄一封信。幫他們寄信的公司同一間，這間公司失誤次數在這個業界裏
-            是無人能敵的----他們經常把客戶的信寄給別人！
-            <br>
-            也許人會失誤，但是這公司抽象過頭，曾經試過全部客戶的信都寄給其他人。公司老闆忍無可忍，無需再忍，
-            直接把員工炒魷魚，至此故事終！
+            <div class="text">
+                是這樣的，現在有\(n\)個人，他們每人要寄一封信。幫他們寄信的公司同一間，這間公司失誤次數在這個業界裏
+                是無人能敵的----他們經常把客戶的信寄給別人！
+            </div>
+            <div class="text">
+                也許人會失誤，但是這公司抽象過頭，曾經試過全部客戶的信都寄給其他人。公司老闆忍無可忍，無需再忍，
+                直接把員工炒魷魚，至此故事終！
+            </div>
             <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_1.jpg">
-            <br>
-            事實上，這個函數的對應域是x < c，其中c是某一個常數。
-        </div>
-        <div class="text" id="desmos">
-            <H2>Desmos:</H2>
-            <ol>
-                <li>
-                    \[x^{2}+y^{2}=1\left\{x<0.5\right\}\]
-                </li>
-                <li>
-                    \[\left(x-2\right)^{2}+y^{2}=1\left\{x<2.5\right\}\]
-                </li>
-                <li>
-                    \[\left(x+2\right)^{2}+y^{2}=1\left\{x<-1.5\right\}\]
-                </li>
-            </ol>
-        </div>
-        <iframe src="https://www.desmos.com/calculator/frswhccspu" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen width="600" height="400"></iframe>
-        <div class="text" id="geogebra">
-            <h2>Geogebra:</h2>
-            <ol>
-                <li>\[{If}(x<0.5, x^{2})+y^{2}=1\]</li>
-                <li>\[{If}(x<-1.5, (x+2)^{2})+y^{2}=1\]</li>
-                <li>\[{If}(x<2.5, (x-2)^{2})+y^{2}=1\]</li>
-            </ol>
-        </div>
-        <iframe src="https://www.geogebra.org/calculator/f2srpjep" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen width="600" height="400"></iframe>
-
-        <div class="text" id="alternative">
-            <H2>不支持條件判斷怎麼辦？</H2>
             <div class="text">
-                我們的想法很簡單，只需要omit掉太大的x值就可以了。有甚麼運算符可以限制太大的x值？沒錯，就是根號，
-                只需抓住根號下的數非負這個限制，具體怎樣寫我把任務交給你。
+                公司老闆十分生氣(雖然他也經常失誤，合同本來交100萬他交了1000萬)，
+                於是他想統計一下\(n\)個客戶的情況中有多少種情況是把每位客戶的信都寄給其他人的。
             </div>
             <div class="text">
-                另外，如果你對C十分敏感(像我這種)，想畫一個「漂亮」的C，這裏是二個稍微複雜的函數，
-                合並在一起會形成一個150度扇形的邊框。
+                其實，可以把這個實際問題抽象成一個組合計數問題：
+            </div>
+            <div class="text">
+                設\(n\)為正整數，問有多少個\({1, 2, ..., n}\)的排列\({a_1, a_2, ..., a_n}\)
+                使得\(a_i \neq i\)對所有\(1 \le i \le n\)成立？
+            </div>
+            <div class="text">
+                而這，就是錯排。
+            </div>
+        </div>
+        <div class="text" id="ans">
+            <h2>遞推式和證明</h2>
+            <div class="text">
+                事實上有一個通項公式，只不過這個公式是由容斥原理等東西推導而來的，這篇文章裏就不詳細說了。
+            </div>
+            <div class="text">
+                遞推式是：
+                \[D_1=0\]
+                \[D_2=1\]
+                \[D_i=(n-1)(D_{i-1}+D_{i-2})\]
+                其中\(D_k\)表示\(n=k\)時的排列個數。
+            </div>
+            <div class="text">
+                證明：
+            </div>
+            <div class="text">
+                \(D_1=0\) 和 \(D_2=1\) 應該不難證。
+                當\(n \ge 3\)時：
+                <br>
+                若\({a_1, a_2, ..., a_n}\)是一個錯排時，則\(a_n\)不能是\(n\)。
+            </div>
+            <div class="text">
+                當\(a_i = n\)時(當然\(1 \le i \le n-1\))，這時有兩種情形：
+            </div>
+            <div class="text">
+                1) 當\(a_n = i\)時：
+                <br>
+                我們視為\(i, n\)「互換」。這時有\(D_{n-2}\)種排列，因為\({a_1, a_2, ..., a_n}\)是一個錯排等價
+                於剩下的\(n-2\)個數形成錯排。
+            </div>
+            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_2.jpg">
+            <div class="text">
+                2) 當\(a_n \neq i\)時：
+                <br>
+                這時有\(D_{n-1}\)種排列，因為\({a_1, a_2, ..., a_n}\)是一個錯排等價
+                於剩下的\(n-1\)個數形成錯排(由於\(a_n \neq i\)，可以把寄給n看做寄給i的)。
+            </div>
+            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_3.jpg">
+            <div class="text">
+                則當\(a_i = n\)時有\(D_{n-1}+D_{n-2}\)種錯排。於是共有
+                \(D_i=(n-1)(D_{i-1}+D_{i-2})\)種錯排。
             </div>
         </div>
 
-        <div class="text" style="font-weight: 1000 !important; font-size: 25px !important;">(Propose by Ethan)</div>
+        <div class="text" id="probability">
+            <h2>一起錯過的概率</h2>
+            <div class="text">
+                下圖是我叫Gemini AI 利用Matplotlib包生成的一起錯過的概率，即\(\frac{D_{n}}{n!}\)。
+            </div>
+            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_4.jpg">
+            <div class="text">我們可以發現，百分之\(36.78\)左右是此函數的漸近線，由此可見員工犯錯的概率還蠻大的。</div>
+        </div>
+
+        <div class="text" style="font-weight: 1000 !important; font-size: 25px !important;">(Propose by HaoJiang)</div>
         <script src="https://giscus.app/client.js"
                 data-repo="tsaihaojiang/blog-comments"
                 data-repo-id="R_kgDOSHqYaA"
@@ -111,7 +142,6 @@
         </script>
     </div>
     <div id="dashboard"></div>
-    <script src="../../dashboard-contributors.js"></script>
     <script>
         fetch('../../dashboard.html')
             .then(response => response.text())

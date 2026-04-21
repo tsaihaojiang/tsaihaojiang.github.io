@@ -5,6 +5,8 @@ img {
     border-radius: 12px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 img:hover {
