@@ -101,14 +101,14 @@
                 我們視為\(i, n\)「互換」。這時有\(D_{n-2}\)種排列，因為\({a_1, a_2, ..., a_n}\)是一個錯排等價
                 於剩下的\(n-2\)個數形成錯排。
             </div>
-            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_2.jpg">
+            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_2.png">
             <div class="text">
                 2) 當\(a_n \neq i\)時：
                 <br>
                 這時有\(D_{n-1}\)種排列，因為\({a_1, a_2, ..., a_n}\)是一個錯排等價
                 於剩下的\(n-1\)個數形成錯排(由於\(a_n \neq i\)，可以把寄給n看做寄給i的)。
             </div>
-            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_3.jpg">
+            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_3.png">
             <div class="text">
                 則當\(a_i = n\)時有\(D_{n-1}+D_{n-2}\)種錯排。於是共有
                 \(D_i=(n-1)(D_{i-1}+D_{i-2})\)種錯排。
@@ -120,7 +120,7 @@
             <div class="text">
                 下圖是我叫Gemini AI 利用Matplotlib包生成的一起錯過的概率，即\(\frac{D_{n}}{n!}\)。
             </div>
-            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_4.jpg">
+            <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_4.png">
             <div class="text">我們可以發現，百分之\(36.78\)左右是此函數的漸近線，由此可見員工犯錯的概率還蠻大的。</div>
         </div>
 
