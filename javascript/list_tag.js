@@ -14,7 +14,7 @@ html += '<div class="article-tags">';
 for (let tag of AllTags) {
     html += `
             <span class="article-tag">
-                <a href="https://ccc-amputee.github.io/tag/${encodeURIComponent(tag)}.html">#${tag}</a></span>
+                <a href="https://tsaihaojiang.github.io/tag/${encodeURIComponent(tag)}.html">#${tag}</a></span>
         `;
 }
 

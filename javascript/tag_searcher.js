@@ -33,7 +33,7 @@ function searchTags() {
     matchedTags.forEach(tag => {
         html += `
             <span class="article-tag">
-                <a href="https://ccc-amputee.github.io/tags/${encodeURIComponent(tag)}.html">#${tag}</a></span>
+                <a href="https://tsaihaojiang.github.io/tags/${encodeURIComponent(tag)}.html">#${tag}</a></span>
         `;
     });
 
