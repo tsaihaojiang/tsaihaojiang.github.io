@@ -322,3 +322,42 @@ img:hover {
     transition: all 0.3s ease;
     line-height: 1.5;
 }
+
+.link-grid .link-box {
+    display: none;           /* 預設全部隱藏 */
+}
+
+.link-grid .link-box.active {
+    display: block;          /* 只顯示當前頁的 */
+}
+
+/* 分頁導航樣式 */
+.pagination {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    padding: 10px 16px;
+    border: 2px solid #ff6d00;
+    background: white;
+    color: #ff6d00;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover,
+.pagination button.active {
+    background: #ff6d00;
+    color: white;
+}
+
+.pagination button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
