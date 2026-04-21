@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="google-site-verification" content="m0CeYIRXOSJIVSmFbuM28Qt-DjwBRPEtBE0-x_CVzbM" />
+    <meta name="description" content="tsaihaojiang blog"/>
+    <link rel="stylesheet" href="../style.css">
+    <title>ccc-amputee website</title>
 </head>
 <body>
+<div id="header"></div>
+<script>
+    fetch('../header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+</script>
 
+<div id="statement">
+    <div id="text-box">
+
+        <div class="article-links-box">
+            <h2 class="section-title">全部作品</h2>
+
+            <div class="link-grid">
+                <div class="link-box">
+                    <a href="https://tsaihaojiang.github.io/pages/2026/利用函數圖象軟件畫CCC.html">
+                        利用函數圖象軟件畫CCC --- 2026/04/20
+                    </a>
+                    <div class="article-tags">
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/函數">#函數</a></span>
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/函數圖像">#函數圖像</a></span>
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/CCC ">#CCC</a></span>
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/Desmos">#Desmos</a></span>
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/Geogebra">#Geogebra</a></span>
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/圓">#圓</a></span>
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/代數">#代數</a></span>
+                        <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/定義域">#定義域</a></span>
+                    </div>
+                </div>
+                <a href="文章2.html" class="link-box">第二篇文章標題</a>
+                <a href="文章3.html" class="link-box">第三篇文章標題</a>
+                <a href="文章4.html" class="link-box">第四篇文章標題</a>
+                <!-- 繼續新增即可 -->
+            </div>
+        </div>
+
+    </div>
+
+    <div id="dashboard"></div>
+    <script>
+        fetch('../dashboard.html').then(r => r.text()).then(d => document.getElementById('dashboard').innerHTML = d);
+    </script>
+</div>
+
+<div id="footer"></div>
+<script>
+    fetch('../footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+</script>
 </body>
 </html>
