@@ -1,0 +1,26 @@
+a {
+    color: #ff6d00;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #e55a00;
+    transform: translateY(-1px);
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background: #ff6d00;
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}

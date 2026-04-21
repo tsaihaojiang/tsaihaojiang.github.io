@@ -1,0 +1,59 @@
+#header {
+    background: #ffffff;
+    padding: 10px 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 10;
+}
+
+#statement {
+    padding: 20px;
+    background: #404040;
+    margin: 35px auto;
+    max-width: 1200px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+#footer {
+    background: #ffffff;
+    color: #555555;
+    padding: 15px 20px;
+    border-top: 1px solid #eeeeee;
+    font-size: 0.98rem;
+    text-align: center;
+}
+
+#text-box {
+    flex: 2 1 0;           /* 桌面版約佔 2/3 */
+    min-width: 0;          /* 防止內容撐破，非常重要 */
+    margin: 0;
+    padding: 35px 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    border-left: 6px solid #ff6d00;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.tags {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    display: flex;
+    gap: 12px;
+}
+
+.tag {
+    background: #ffffff;
+    color: #ffffff;
+    padding: 7px 18px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(255, 109, 0, 0.3);
+}

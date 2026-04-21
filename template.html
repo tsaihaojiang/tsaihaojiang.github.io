@@ -6,6 +6,14 @@
     <meta name="google-site-verification" content="m0CeYIRXOSJIVSmFbuM28Qt-DjwBRPEtBE0-x_CVzbM" />
     <meta name="description" content="tsaihaojiang blog"/>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/a.css">
+    <link rel="stylesheet" href="css/box.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/device.css">
+    <link rel="stylesheet" href="css/image.css">
+    <link rel="stylesheet" href="css/tag.css">
+    <link rel="stylesheet" href="css/text.css">
+    <link rel="stylesheet" href="css/zone.css">
     <title>ccc-amputee website</title>
 </head>
 <body>
@@ -44,15 +52,10 @@
     </div>
     <br>
     <div id="dashboard"></div>
-    <script src="dashboard-contributors.js"></script>
     <script>
         fetch('dashboard.html')
             .then(response => response.text())
-            .then(data => {
-                const dashboard = document.getElementById('dashboard');
-                dashboard.innerHTML = data;
-                window.renderContributorRanking?.(dashboard);
-            });
+            .then(data => document.getElementById('dashboard').innerHTML = data);
     </script>
 </div>
 

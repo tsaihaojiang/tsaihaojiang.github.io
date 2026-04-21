@@ -1,0 +1,51 @@
+@media (max-width: 1024px) {
+    #statement {
+        padding: 16px;
+        gap: 18px;
+    }
+
+    #text-box {
+        padding: 30px 35px;
+    }
+}
+
+@media (max-width: 768px) {     /* 平板 & 小筆電 */
+    #statement {
+        flex-direction: column;   /* 手機模式改成上下排列 */
+        gap: 16px;
+    }
+
+    #text-box {
+        flex: none;               /* 取消 flex 比例 */
+        width: 100%;
+        padding: 28px 30px;
+    }
+
+    #dashboard {
+        flex: none;
+        width: 100%;
+    }
+
+    .title {
+        font-size: 2.6rem;
+    }
+}
+
+@media (max-width: 480px) {     /* 小手機 */
+    #statement {
+        padding: 12px;
+        margin: 20px 10px;
+    }
+
+    #text-box {
+        padding: 24px 20px;
+    }
+
+    .title {
+        font-size: 2.3rem;
+    }
+
+    .text {
+        font-size: 1.05rem;
+    }
+}
