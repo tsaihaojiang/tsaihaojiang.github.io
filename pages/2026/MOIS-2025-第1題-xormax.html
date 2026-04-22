@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MOIS-2025-第1題-xormax"/>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/a.css">
+  <link rel="stylesheet" href="../../css/box.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+  <link rel="stylesheet" href="../../css/device.css">
+  <link rel="stylesheet" href="../../css/image.css">
+  <link rel="stylesheet" href="../../css/tag.css">
+  <link rel="stylesheet" href="../../css/text.css">
+  <link rel="stylesheet" href="../../css/zone.css">
+  <title>MOIS-2025-第1題-xormax</title>
+  <!--math library import start -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!--math library import end -->
+</head>
+<body>
+<div id="header"></div>
+<script>
+  fetch('../../header.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('header').innerHTML = data);
+</script>
+<div id="statement">
+  <div id="text-box">
+    <div class="title">MOIS-2025-第1題-xormax</div>
+    <div class="date"><a>2026/04/22 WED</a></div>
+    <div class="article-tags">
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/前綴和.html">#前綴和</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/異或xor.html">#異或xor</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/C++.html">#C++</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/MOI.html">#MOI</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/澳門.html">#澳門</a></span>
+    </div>
+    <div id="content">
+      <h2>目錄</h2>
+      <ol>
+        <li><a href="#problem">題目</a></li>
+        <li><a href="#solution">解法</a></li>
+        <li><a href="#code">代碼!!!</a></li>
+      </ol>
+    </div>
+    <div class="text" id="problem">
+      <h2>題目</h2>
+      <div class="text">
+        給定\(n(2 \le n \le 200000)\)個正整數\(a_1, a_2, ..., a_n\)，其中\(1 \le a_i < 2^{10} \)。
+        <br>
+        對於任意的區間\([L, R](1 \le L \le R \le n)\)，定義\(P(L, R)= a_L \oplus a_{L+1} \oplus ... \oplus a_R \)。
+      </div>
+      <div class="text">
+        求P(L, R)的最大值。
+      </div>
+    </div>
+    <div class="text" id="solution">
+      <h2>解法</h2>
+      <div class="text">
+        首先，提到異或和區間，我們可以快速地想到前綴和，因為異或具有前綴和成立的性質。
+      </div>
+      <div class="text">
+        按照一般的做法，我們計算並記錄\(P(1, 1), P(1, 2), ..., P(1, n)\)。然後從\(1\)至\(n\)中選兩個\(k, c\)
+        並找到最大值，有如下代碼：
+        <code><pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n, k, ans;
+
+int main() {
+    cin >> n; ans = 0;
+
+    vector&lt;int&gt; pre(n + 1, 0);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> k;
+        pre[i] = pre[i - 1] ^ k;
+    }
+
+    for (int i = 1; i <= 200000; i++)
+        for (int j = i + 1; j <= 200000; j++)
+            ans = max(ans, pre[j] ^ pre[i - 1]);
+
+    printf("%d", ans);
+
+    return 0;
+}
+        </pre></code>
+      </div>
+      <div class="text">
+        這個代碼的時間複雜度為\(O(n^2)\)，在\(n=200000\)的情況下顯然超爆時，100%TLE。
+        <br>
+        要怎樣優化呢？
+      </div>
+      <div class="text">
+        注意到(這樣說很不要臉)：\(a_i < 1024\)，所以所有的\(P(L,R)\)都會小於\(1024\)，這很關鍵。
+        由於題目不要求我們輸出最大值時的\(L,R\)，所以我們只需發慮所有\(P(1,k)\)的值。
+      </div>
+      <div class="text">
+        把所有\(P(1,k)\)於入一個集合中(終於體驗到集合的便捷性)，然後再1024選2個求最大值便可以了，
+        這時的時間複雜度至多為\(2^{20}\)，這個量小於\(10^8\)，尤其在xor運算十分快的情況下，一定可以通過。
+      </div>
+      <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_5.png">
+    </div>
+
+    <div class="text" id="code">
+      <h2>AC代碼</h2>
+      <div class="text">
+        <code><pre>
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n, k, ans;
+
+int main() {
+    cin >> n; ans = 0;
+
+    vector&lt;int&gt; pre(n + 1, 0);
+    set&lt;int&gt; a; a.insert(0);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> k;
+        pre[i] = pre[i - 1] ^ k;
+        a.insert(pre[i]);
+    }
+
+    for (auto i : a)
+        for (auto j : a)
+            if (i != j) ans = max(ans, i ^ j);
+    printf("%d", ans);
+
+    return 0;
+}
+
+        </pre></code>
+      </div>
+    </div>
+
+    <div class="text" style="font-weight: 1000 !important; font-size: 25px !important;">(Propose by HaoJiang)</div>
+    <script src="https://giscus.app/client.js"
+            data-repo="tsaihaojiang/blog-comments"
+            data-repo-id="R_kgDOSHqYaA"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOSHqYaM4C7RwW"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="light"
+            data-lang="zh-TW"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+  <div id="dashboard"></div>
+  <script>
+    fetch('../../dashboard.html')
+            .then(response => response.text())
+            .then(data => {
+              const dashboard = document.getElementById('dashboard');
+              dashboard.innerHTML = data;
+              window.renderContributorRanking?.(dashboard);
+            });
+  </script>
+</div>
+<div id="footer"></div>
+<script>
+  fetch('../../footer.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('footer').innerHTML = data);
+</script>
+</body>
+</html>

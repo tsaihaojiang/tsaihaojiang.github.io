@@ -11,6 +11,12 @@ const articleData = [
         link: "https://tsaihaojiang.github.io/pages/2026/一起錯過是怎樣的體驗----錯排.html",
         date: "2026-04-21"
     },
+    {
+        title: "MOIS-2025-第1題-xormax",
+        tags: ["前綴和", "異或xor", "C++", "MOI", "澳門", "all"],
+        link: "https://tsaihaojiang.github.io/pages/2026/MOIS-2025-第1題-xormax.html",
+        date: "2026-04-22"
+    },
 
     // 在這裡繼續增加文章...
 ];
