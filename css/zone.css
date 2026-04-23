@@ -17,6 +17,7 @@
     display: flex;
     gap: 24px;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 #footer {
@@ -38,6 +39,7 @@
     border-left: 6px solid #ff6d00;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
     overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .tags {

@@ -17,6 +17,12 @@ const articleData = [
         link: "https://tsaihaojiang.github.io/pages/2026/MOIS-2025-第1題-xormax.html",
         date: "2026-04-22"
     },
+    {
+        title: "洛谷-P1168-中位數",
+        tags: ["洛谷", "堆", "優先隊列priority_queue", "中位數", "STL", "all"],
+        link: "https://tsaihaojiang.github.io/pages/2026/洛谷-P1168-中位數.html",
+        date: "2026-04-23"
+    },
 
     // 在這裡繼續增加文章...
 ];

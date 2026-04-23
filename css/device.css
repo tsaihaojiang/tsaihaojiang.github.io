@@ -10,15 +10,14 @@
 }
 
 @media (max-width: 768px) {     /* 平板 & 小筆電 */
-    #statement {
-        flex-direction: column;   /* 手機模式改成上下排列 */
-        gap: 16px;
+
+    body {
+        flex-direction: column;
     }
 
     #text-box {
         flex: none;               /* 取消 flex 比例 */
         width: 100%;
-        padding: 28px 30px;
     }
 
     #dashboard {
@@ -27,25 +26,27 @@
     }
 
     .title {
-        font-size: 2.6rem;
+        font-size: 2.2rem;
     }
 }
 
-@media (max-width: 480px) {     /* 小手機 */
-    #statement {
-        padding: 12px;
-        margin: 20px 10px;
+@media (max-width: 480px) {  /* 小手機 */
+    body {
+        flex-direction: column;
     }
 
     #text-box {
-        padding: 24px 20px;
+        flex: none; /* 取消 flex 比例 */
+        font-size: 12px; !important;
+        width: 100%;
+    }
+
+    #dashboard {
+        flex: none;
+        width: 100%;
     }
 
     .title {
         font-size: 2.3rem;
-    }
-
-    .text {
-        font-size: 1.05rem;
     }
 }

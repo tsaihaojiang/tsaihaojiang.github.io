@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="洛谷-P1168-中位數"/>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/a.css">
+  <link rel="stylesheet" href="../../css/box.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+  <link rel="stylesheet" href="../../css/device.css">
+  <link rel="stylesheet" href="../../css/image.css">
+  <link rel="stylesheet" href="../../css/tag.css">
+  <link rel="stylesheet" href="../../css/text.css">
+  <link rel="stylesheet" href="../../css/zone.css">
+  <title>洛谷-P1168-中位數</title>
+  <!--math library import start -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!--math library import end -->
+</head>
+<body>
+<div id="header"></div>
+<script>
+  fetch('../../header.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('header').innerHTML = data);
+</script>
+<div id="statement">
+  <div id="text-box">
+    <div class="title">洛谷-P1168-中位數</div>
+    <div class="date"><a>2026/04/23 THU</a></div>
+    <div class="article-tags">
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/洛谷.html">#洛谷</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/堆.html">#堆</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/優先隊列priority_queue.html">#優先隊列priority_queue</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/中位數.html">#中位數</a></span>
+      <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/STL.html">#STL</a></span>
+    </div>
+    <div id="content">
+      <h2>目錄</h2>
+      <ol>
+        <li><a href="#problem">題目</a></li>
+        <li><a href="#solution">解法</a></li>
+        <li><a href="#code">代碼!!!</a></li>
+      </ol>
+    </div>
+    <div class="text" id="problem">
+      <h2>題目</h2>
+      <div class="text"><a href="https://luogu.com.cn/problem/P1168">題目連結</a></div>
+      <div class="text">
+        给定一个长度为\(n\)的非负整数序列\(A\)，对于前奇数项求中位数。
+        <br>
+        其中\(1 \le n \le 10^5\) 和 \(0 \le A_i \le 10^9\)。
+      </div>
+    </div>
+    <div class="text" id="solution">
+      <h2>解法</h2>
+      <div class="text">
+        我們先嘗試較為暴力的方法，每次都排一次序。代碼是不難得的，但只有40分。
+        <code><pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n, k;
+
+int main() {
+    int n; cin >> n;
+    vector&lt;int&gt; a(n + 1, 0);
+    for (int i = 1; i <= n; i++) cin >> a[i];
+
+    for (int i = 1; i <= n; i += 2) {
+        vector&lt;int&gt; c(a.begin(), a.begin() + i + 1);
+        sort(c.begin(), c.end());
+
+        printf("%d\n", c[(i + 1) / 2]);
+    }
+    return 0;
+}
+        </pre></code>
+      </div>
+      <div class="text">
+        當然也可以用插入排序----每次插兩次，最差時間複雜度為\(O(n^2)\)，在\(n=10^5\)時不保證能通過(儘管我沒有嘗試過)。
+      </div>
+      <br>
+      <h3>正解</h3>
+      <div class="text">
+        存不存在一種算法是"遞推"的呢？換句話說，就是答案可以由上一次的狀態經過常數級的操作得到嗎，再把這次的狀態留給下一個答案嗎？
+      </div>
+      <div class="text">
+        我們的想法和插入排序差不多----插入新的值，只不過插入排序時間複雜度最差是\(O(n)\)的，我們可否可以精化到對數級甚至是常數級呢？
+        當\(n=1\)時，顯然答案是\(a_i\)。\(n \ge 3\)時，我們需要輸入兩個數並插入。
+      </div>
+      <div class="text">
+        不如，拿一個變量記錄中位數，中位數左邊和右邊分別拿一個數據結構儲存吧！(應該是自然的)
+        對於\(n \ge 3\)，輸入的兩個數比較它們和中位數大小後決定它們的歸宿。
+        輸入完畢後，若果左邊和右邊的個數相等，則那個變量裝的明顯就是中位數。
+        否則，我們可以把多的那邊搬到少的那邊，如圖所示。
+      </div>
+      <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_6.png">
+      <div class="text">
+          由於每次由下的盤面的左和右個數都相等，而每次只會輸入兩次， 所以就算搬也只會搬最「極」的那個
+          (若多在左邊，則搬左中最大的；反之搬右中最小的)(如圖)。因此，最大和最小堆能夠完美勝任這個數據結構。
+      </div>
+      <div>
+          最後，只需模擬搬的過程就可以了。代碼奉上。
+      </div>
+    </div>
+
+    <div class="text" id="code">
+      <h2>AC代碼</h2>
+      <div class="text">
+        <code><pre>
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int n, x, mid;
+
+int main() {
+    int n; cin >> n;
+
+    priority_queue&lt;int, vector&lt;int&gt;&gt; pq1;
+    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq2;
+
+    for (int i = 1; i <= (n + 1) / 2; i++) {
+        if (i == 1) {
+             cin >> x;
+            mid = x;
+        } else {
+            for (int i = 1; i <= 2; i++) {
+                cin >> x;
+                if (x >= mid) pq2.push(x);
+                else pq1.push(x);
+            }
+            if (pq1.size() > pq2.size()) {
+                int c = pq1.top(); pq1.pop();
+                pq2.push(mid);
+                mid = c;
+            }
+            if (pq1.size() < pq2.size()) {
+                int c = pq2.top(); pq2.pop();
+                pq1.push(mid);
+                mid = c;
+            }
+        }
+        printf("%d\n", mid);
+    }
+    return 0;
+}
+
+        </pre></code>
+      </div>
+    </div>
+
+    <div class="text" style="font-weight: 1000 !important; font-size: 25px !important;">(Propose by HaoJiang)</div>
+    <script src="https://giscus.app/client.js"
+            data-repo="tsaihaojiang/blog-comments"
+            data-repo-id="R_kgDOSHqYaA"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOSHqYaM4C7RwW"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="light"
+            data-lang="zh-TW"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+  <div id="dashboard"></div>
+  <script>
+    fetch('../../dashboard.html')
+            .then(response => response.text())
+            .then(data => {
+              const dashboard = document.getElementById('dashboard');
+              dashboard.innerHTML = data;
+              window.renderContributorRanking?.(dashboard);
+            });
+  </script>
+</div>
+<div id="footer"></div>
+<script>
+  fetch('../../footer.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('footer').innerHTML = data);
+</script>
+</body>
+</html>
