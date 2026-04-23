@@ -31,4 +31,5 @@ pre {
     border-left: 6px solid #ff6d00;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
     border-radius: 12px;
+    overflow: auto;
 }
