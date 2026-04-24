@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0        # 必須要有這行，才能取得最後修改日期
+          fetch-depth: 0  
 
       - name: Generate sitemap.xml
         id: sitemap
