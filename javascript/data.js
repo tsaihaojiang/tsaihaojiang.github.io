@@ -26,7 +26,7 @@ const articleData = [
     {
         title: "Catalan數(feat.-P1044棧)",
         tags: ["Catalan數", "洛谷", "遞推", "棧", "數學", "C++", "計數問題", "組合數學", "all"],
-        link: "https://tsaihaojiang.github.io/pages/2026/data.js.html",
+        link: "https://tsaihaojiang.github.io/pages/2026/Catalan數(feat.-P1044棧).html",
         date: "2026-04-24"
     }
 
