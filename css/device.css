@@ -26,7 +26,11 @@
     }
 
     .title {
-        font-size: 2.2rem;
+        font-size: 2rem;
+    }
+
+    #caption {
+        font-size: 2.3rem;
     }
 }
 
@@ -37,7 +41,7 @@
 
     #text-box {
         flex: none; /* 取消 flex 比例 */
-        font-size: 12px; !important;
+        font-size: 8px;
         width: 100%;
     }
 
@@ -48,5 +52,9 @@
 
     .title {
         font-size: 2.3rem;
+    }
+
+    #caption {
+        font-size: 1.8rem;
     }
 }

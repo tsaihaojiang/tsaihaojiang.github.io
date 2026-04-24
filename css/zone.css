@@ -44,18 +44,8 @@
 
 .tags {
     position: absolute;
-    bottom: 20px;
+    top: 20px;
     right: 25px;
     display: flex;
-    gap: 12px;
-}
-
-.tag {
-    background: #ffffff;
-    color: #ffffff;
-    padding: 7px 18px;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    box-shadow: 0 3px 10px rgba(255, 109, 0, 0.3);
+    gap: 40px;
 }
