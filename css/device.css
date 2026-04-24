@@ -32,6 +32,10 @@
     #caption {
         font-size: 2.3rem;
     }
+
+    .box {
+        font-size: 0.95rem;
+    }
 }
 
 @media (max-width: 480px) {  /* 小手機 */
@@ -39,9 +43,8 @@
         flex-direction: column;
     }
 
-    #text-box {
+    .text {
         flex: none; /* 取消 flex 比例 */
-        font-size: 8px;
         width: 100%;
     }
 
