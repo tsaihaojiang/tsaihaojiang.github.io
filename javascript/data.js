@@ -7,7 +7,7 @@ const articleData = [
     },
     {
         title: "一起錯過是怎樣的體驗----錯排",
-        tags: ["遞推", "組合數學", "錯排", "計數問題", "all"],
+        tags: ["遞推", "組合數學", "錯排", "計數問題", "數學", "all"],
         link: "https://tsaihaojiang.github.io/pages/2026/一起錯過是怎樣的體驗----錯排.html",
         date: "2026-04-21"
     },
@@ -19,10 +19,16 @@ const articleData = [
     },
     {
         title: "洛谷-P1168-中位數",
-        tags: ["洛谷", "堆", "優先隊列priority_queue", "中位數", "STL", "all"],
+        tags: ["洛谷", "堆", "優先隊列priority_queue", "中位數", "STL", "C++", "all"],
         link: "https://tsaihaojiang.github.io/pages/2026/洛谷-P1168-中位數.html",
         date: "2026-04-23"
     },
+    {
+        title: "Catalan數(feat.-P1044棧)",
+        tags: ["Catalan數", "洛谷", "遞推", "棧", "數學", "C++", "計數問題", "組合數學", "all"],
+        link: "https://tsaihaojiang.github.io/pages/2026/data.js.html",
+        date: "2026-04-24"
+    }
 
     // 在這裡繼續增加文章...
 ];

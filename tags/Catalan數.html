@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="google-site-verification" content="m0CeYIRXOSJIVSmFbuM28Qt-DjwBRPEtBE0-x_CVzbM" />
+    <meta name="description" content="tsaihaojiang blog"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/a.css">
+    <link rel="stylesheet" href="../css/box.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/device.css">
+    <link rel="stylesheet" href="../css/image.css">
+    <link rel="stylesheet" href="../css/tag.css">
+    <link rel="stylesheet" href="../css/text.css">
+    <link rel="stylesheet" href="../css/zone.css">
+    <title>ccc-amputee website</title>
+</head>
+<body>
+<div id="header"></div>
+<script>
+    fetch('../header.html').then(r => r.text()).then(d => document.getElementById('header').innerHTML = d);
+</script>
+
+<div id="statement">
+    <div id="text-box">
+
+        <div class="article-box">
+            <div class="box-title">標籤:Catalan數</div>
+            <br>
+
+            <div class="article-box">
+                <div class="boxes" data-current-tag="Catalan數"></div>
+                <script src="../javascript/data.js"></script>
+                <script src="../javascript/generate_tag.js"></script>
+            </div>
+
+            <script src="../javascript/change_page.js"></script>
+        </div>
+
+    </div>
+
+    <div id="dashboard"></div>
+    <script>
+        fetch('../dashboard.html').then(r => r.text()).then(d => document.getElementById('dashboard').innerHTML = d);
+    </script>
+</div>
+
+<div id="footer"></div>
+<script>
+    fetch('../footer.html').then(r => r.text()).then(d => document.getElementById('footer').innerHTML = d);
+</script>
+</body>
+</html>
+
