@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Catalan數(feat.-P1044棧)"/>
+    <meta name="description" content="Catalan數2(feat.-網格路徑)"/>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/a.css">
     <link rel="stylesheet" href="../../css/box.css">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/text.css">
     <link rel="stylesheet" href="../../css/zone.css">
     <link rel="stylesheet" href="../../css/device.css">
-    <title>Catalan數(feat.-P1044棧)</title>
+    <title>Catalan數2(feat.-網格路徑)</title>
     <!--math library import start -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -29,11 +29,11 @@
 </script>
 <div id="statement">
     <div id="text-box">
-        <div class="title">Catalan數(feat.-P1044棧)</div>
-        <div class="date"><a>2026/04/24 FRI</a></div>
+        <div class="title">Catalan數2(feat.-網格路徑)</div>
+        <div class="date"><a>2026/04/25 SAT</a></div>
         <div class="article-tags">
             <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/Catalan數.html">#Catalan數</a></span>
-            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/洛谷.html">#洛谷</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/算兩次.html">#算兩次</a></span>
             <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/遞推.html">#遞推</a></span>
             <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/棧.html">#棧</a></span>
             <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/數學.html">#數學</a></span>
@@ -43,32 +43,60 @@
         <div id="content">
             <h2>目錄</h2>
             <ol>
-                <li><a href="#problem">例題題目</a></li>
-                <li><a href="#solution">例題題解</a></li>
-                <li><a href="#catalan">Catalan數</a></li>
-                <li><a href="#other">Catalan數更多的意義</a></li>
+                <Li><a href="#previous">上集回顧</a></Li>
+                <li><a href="#formula">Catalan數的通項公式</a></li>
+                <li><a href="#problem">網格問題</a></li>
+                <li><a href="#solution">利用算兩次的證明</a></li>
+                <li><a href="#next">下集預告</a></li>
             </ol>
         </div>
-        <div class="text" id="problem">
-            <h2>例題題目</h2>
+        <div class="text" id="previous">
+            <h2>上集回顧</h2>
             <div class="text">
-                <a href="https://luogu.com.cn/problem/P1044">題目連結</a>
-                <br>
-                給定正整數\(n\)，依次將\(1\)至\(n\)入棧，再合法地出棧。問有多少種出棧的序列？
-                <br>
-                比如：當\(n=3\)時，\(1\)至\(3\)依次入棧，合法地出棧可以得出序列
-                \(\{1, 2, 3\}, \{1, 3, 2\}, \{2, 1, 3\}, \{2, 3, 1\}, \{3, 2, 1\}\)共5個，因此輸出\(5\)。
+                <a href="https://tsaihaojiang.github.io/pages/2026/Catalan數(feat.-P1044棧).html">上集</a>
+                我們通過洛谷P1044的棧序列個數問題認識到Catalan數，並聲稱Catalan數有很多不同的理解和一個通項公式。
+                今天我們要介紹其中一種理解------網格路徑，並利用算兩次證明Catalan的通項公式。
+            </div>
+        </div>
+        <div class="text" id="formula">
+            <h2>Catalan數的通項公式</h2>
+            <div class="text">
+                事實上，Catalan數的通項公式是\[C_n=\frac{1}{n + 1} \binom{2n}{n}\]
+            </div>
+            <div class="text">
+                證明這個通項公式成立的一個有效手段是證明此通項公式的數列actually等於那個
+                <a href="https://tsaihaojiang.github.io/pages/2026/Catalan數(feat.-P1044棧).html#catalan">遞推式</a>
+                。
+            </div>
+        </div>
+        <div class="text" id="problem">
+            <h2>網格問題</h2>
+            <div class="text">
+                給定正整數\(n\)，小C正站在平面直角座標系的\((0, 0)\)上，
+                每次他都可以向右或向上行一步(對應的操作是\(x\)或\(y\)座標增加\(1\))。
+                <strong>途中不能經過\((1,1), (2,2), ..., (n-1, n-1)\)點。</strong>
+            </div>
+            <div class="text">
+                問有多少種走法？
             </div>
         </div>
         <div class="text" id="solution">
-            <h2>例題題解</h2>
+            <h2>利用算兩次的證明</h2>
             <div class="text">
-                可以觀察一下\(1\)在何時出棧有多少個合法序列。設\(C_n\)為\(n\)情況下的答案。
+                首先，我們證明答案是
+                \[C_1=1\]
+                \[C_2=1\]
+                \[C_n=\sum_{i=1}^{n} C_{i-1}C_{n-i}(n \ge 3)\]
             </div>
             <div class="text">
-                比如：當\(n=5\)時，若\(1\)在序列中的第4位，則他的前3位實際上是\(n=3\)時的個數，他的後面1位實際上是\(n=1\)時的個數。
-                因此\(1\)在序列中的第4位共有\(C_3C_1\)(乘法原理)個合法序列。總之，
-                對於所有\(1 \le i \le n\)，\(1\)在序列中第\(i\)位共有\(C_{i-1}C_{n-i}\)個合法序列。
+                當\(n=1\)時，只有 \((0, 0)\)->右->上 這種走法，因此\(C_1=1\)。
+                <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_7.png">
+                <figcaption>\(n=1\)時的情況</figcaption>
+                <br>
+                當\(n=2\)時，只有 \((0, 0)\)->右->右->上->上 這種走法，因此\(C_2=1\)。
+                <img src="https://github.com/tsaihaojiang/tsaihaojiang.github.io/raw/main/image/tsaihaojiang_8.png">
+                <figcaption>\(n=2\)時的情況</figcaption>
+                當\(n \ge 3\)時
             </div>
             <div class="text">
                 所以有\(\sum_{i=1}^{n} C_{i-1}C_{n-i}\)個合法序列，有如下代碼：

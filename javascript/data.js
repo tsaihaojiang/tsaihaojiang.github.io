@@ -28,6 +28,12 @@ const articleData = [
         tags: ["Catalan數", "洛谷", "遞推", "棧", "數學", "C++", "計數問題", "組合數學", "all"],
         link: "https://tsaihaojiang.github.io/pages/2026/Catalan數(feat.-P1044棧).html",
         date: "2026-04-24"
+    },
+    {
+        title: "洛谷-P1631-序列合並",
+        tags: ["洛谷", "堆", "優先隊列priority_queue", "優化", "STL", "C++", "all"],
+        link: "https://tsaihaojiang.github.io/pages/2026/洛谷-P1631-序列合並.html",
+        date: "2026-04-24"
     }
 
     // 在這裡繼續增加文章...

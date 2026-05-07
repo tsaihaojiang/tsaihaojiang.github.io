@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="洛谷-P1631-序列合並"/>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/a.css">
+    <link rel="stylesheet" href="../../css/box.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/image.css">
+    <link rel="stylesheet" href="../../css/tag.css">
+    <link rel="stylesheet" href="../../css/text.css">
+    <link rel="stylesheet" href="../../css/zone.css">
+    <link rel="stylesheet" href="../../css/device.css">
+    <title>洛谷-P1631-序列合並</title>
+    <!--math library import start -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!--math library import end -->
+</head>
+<body>
+<div id="header"></div>
+<script>
+    fetch('../../header.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('header').innerHTML = data);
+</script>
+<div id="statement">
+    <div id="text-box">
+        <div class="title">洛谷-P1631-序列合並</div>
+        <div class="date"><a>2026/05/07 THU</a></div>
+        <div class="article-tags">
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/洛谷.html">#洛谷</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/堆.html">#堆</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/優先隊列priority_queue.html">#優先隊列priority_queue</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/優化.html">#優化</a></span>
+            <span class="article-tag"><a href="https://tsaihaojiang.github.io/tags/STL.html">#STL</a></span>
+        </div>
+        <div id="content">
+            <h2>目錄</h2>
+            <ol>
+                <li><a href="#problem">題目</a></li>
+                <li><a href="#solution">解法</a></li>
+                <li><a href="#code">代碼!!!</a></li>
+            </ol>
+        </div>
+        <div class="text" id="problem">
+            <h2>題目</h2>
+            <div class="text"><a href="https://luogu.com.cn/problem/P1631">題目連結</a></div>
+            <div class="text">
+                有两个长度为 \(N\) 的单调不降序列 \(A,B\) ，在 \(A,B\) 中各取一个数相加可以得到 \(N^2\)
+                个和，求这 \(N^2\) 个和中最小的 \(N\) 个。
+            </div>
+        </div>
+        <div class="text" id="solution">
+            <h2>解法</h2>
+            <div class="text">
+                一個容易想的方法是直接記錄這 \(N^2\) 個和，並將它們放入最小堆，然後拿最小的 \(N\) 個數。但只有64分。
+                <code><pre>
+#include&lt;bits/stdc++.h>
+using namespace std;
+
+int n;
+
+int main() {
+    cin >> n;
+
+    vector&lt;int&gt; a(n + 1, 0);
+    for (int i = 1; i <= n; i++) cin >> a[i];
+
+    priority_queue&lt;int, vector&lt;int>, greater&lt;int>> pq;
+
+    for (int i = 1; i <= n; i++) {
+        int k; cin >> k;
+        for (int j = 1; j <= n; j++) pq.push(k + a[j]);
+    }
+
+    for (int i = 1; i <= n; i++) {
+        printf("%d ", pq.top());
+        pq.pop();
+    }
+
+    return 0;
+}
+        </pre></code>
+            </div>
+            <br>
+            <h3>正解</h3>
+            <div class="text">
+                既然是兩個非遞減數列，應該會有一些和是可以直接不理的！
+            </div>
+            <div class="text">
+                想一想，對於每一個 \(a_i+b_j\) ， 定義 \(C_{ij}=(i-1)(j-1)\) 。 \(a_1+b_1, a_1+b_2, ..., a_1+b_{j-1}, a_2+b_1, a_2+b_2, ..., a_2+b_{j-1}, ..., a_{i-1}+b_{j-1}\)
+                都嚴格不大於它。因此至少有 \(C_{ij}\) 個數不大於 \(a_i+b_j\)，如果 \(C_{ij}\) 都大於 \(N\) 了，那 \(a_i+b_j\) 就一定不會是最小的 \(N\) 個，我們可以不理。
+            </div>
+            <div class="text">
+                可以判斷 \(C_{ij}\) 的大小決定要不要omit \(a_i+b_j\) ，這樣可以加快程式的速度(說甚麼廢話！)。
+            </div>
+        </div>
+
+        <div class="text" id="code">
+            <h2>AC代碼</h2>
+            <div class="text">
+                <code><pre>
+#include&lt;bits/stdc++.h>
+using namespace std;
+
+int n;
+
+int main() {
+    cin >> n;
+
+    vector&lt;int> a(n + 1, 0);
+    for (int i = 1; i <= n; i++) cin >> a[i];
+
+    priority_queue&lt;int, vector&lt;int>, greater&lt;int>> pq;
+
+    for (int i = 1; i <= n; i++) {
+        int k; cin >> k;
+        for (int j = 1; (i - 1) * (j - 1) <= n && j <= n; j++) pq.push(k + a[j]);
+    }
+
+    for (int i = 1; i <= n; i++) {
+        printf("%d ", pq.top());
+        pq.pop();
+    }
+
+    return 0;
+}
+
+        </pre></code>
+            </div>
+        </div>
+
+        <div class="text" style="font-weight: 1000 !important; font-size: 25px !important;">(Propose by HaoJiang)</div>
+        <script src="https://giscus.app/client.js"
+                data-repo="tsaihaojiang/blog-comments"
+                data-repo-id="R_kgDOSHqYaA"
+                data-category="Announcements"
+                data-category-id="DIC_kwDOSHqYaM4C7RwW"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="light"
+                data-lang="zh-TW"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+    <div id="dashboard"></div>
+    <script>
+        fetch('../../dashboard.html')
+            .then(response => response.text())
+            .then(data => {
+                const dashboard = document.getElementById('dashboard');
+                dashboard.innerHTML = data;
+            });
+    </script>
+</div>
+<div id="footer"></div>
+<script>
+    fetch('../../footer.html')
+        .then(response => response.text())
+        .then(data => document.getElementById('footer').innerHTML = data);
+</script>
+</body>
+</html>
