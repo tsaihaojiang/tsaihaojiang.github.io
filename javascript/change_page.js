@@ -1,4 +1,4 @@
-const itemsPerPage = 8;
+const itemsPerPage = 5;
 let currentPage = 1;
 
 function setupPagination() {
